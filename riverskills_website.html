@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RiverSkills — AI-Powered Skills for Every Rivers State Family</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#FBF8F2; --surface:#FFFFFF; --surface-2:#F3EEE1; --text:#20291F; --muted:#6B6255; --border:#EAE2D2;
+    --green:#1F7A4D; --green-dark:#155C39; --gold:#F2A93B; --teal:#0B4F6C; --clay:#C1592E;
+    --shadow: 0 1px 2px rgba(32,41,31,.04), 0 10px 26px rgba(32,41,31,.07);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#141910; --surface:#1D241A; --surface-2:#232B1E; --text:#F2F1E9; --muted:#AEB0A0; --border:#33402C;
+      --shadow: 0 1px 2px rgba(0,0,0,.3), 0 10px 26px rgba(0,0,0,.35);
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#141910; --surface:#1D241A; --surface-2:#232B1E; --text:#F2F1E9; --muted:#AEB0A0; --border:#33402C;
+    --shadow: 0 1px 2px rgba(0,0,0,.3), 0 10px 26px rgba(0,0,0,.35);
+  }
+  *{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  body{ margin:0; background:var(--bg); color:var(--text); font-family:'Inter',system-ui,sans-serif; font-size:16.5px; -webkit-font-smoothing:antialiased; }
+  h1,h2,h3,.display{ font-family:'Poppins','Inter',system-ui,sans-serif; }
+  a{ color:inherit; }
+  .wrap{ max-width:1140px; margin:0 auto; padding:0 24px; }
+  section{ padding:72px 0; }
+  @media (max-width:720px){ section{ padding:48px 0; } }
+  .eyebrow{ font-size:12.5px; font-weight:700; letter-spacing:.05em; text-transform:uppercase; color:var(--green); }
+  .h2{ font-size:29px; font-weight:700; margin:8px 0 12px 0; letter-spacing:-0.01em; }
+  .sub{ font-size:15px; color:var(--muted); max-width:640px; line-height:1.65; margin:0 0 36px 0; }
+  .on-brand .eyebrow{ color:#FFE7B8; }
+  .on-brand .h2, .on-brand h3{ color:#fff; }
+  .on-brand .sub, .on-brand p{ color:#EFE6D2; }
+
+  /* ---------- Nav ---------- */
+  header.site-nav{ position:sticky; top:0; z-index:50; background:var(--surface); border-bottom:1px solid var(--border); }
+  .nav-inner{ display:flex; align-items:center; justify-content:space-between; padding:14px 24px; max-width:1140px; margin:0 auto; }
+  .nav-brand{ display:flex; align-items:center; gap:9px; font-weight:700; font-size:15.5px; }
+  .nav-mark{ width:32px;height:32px;border-radius:9px; background:linear-gradient(135deg,var(--green),var(--teal)); color:#fff; display:flex; align-items:center; justify-content:center; font-size:15px; }
+  .nav-links{ display:flex; gap:24px; }
+  .nav-links a{ font-size:13.5px; font-weight:600; color:var(--text); text-decoration:none; }
+  .nav-links a:hover{ color:var(--green); }
+  .nav-actions{ display:flex; align-items:center; gap:10px; }
+  .theme-toggle{ width:32px;height:32px;border-radius:50%; background:var(--surface-2); border:1px solid var(--border); color:var(--text); display:flex; align-items:center; justify-content:center; font-size:14px; cursor:pointer; }
+  .nav-cta{ background:var(--gold); color:#3A2500; font-weight:700; font-size:13px; padding:10px 16px; border-radius:9px; border:none; cursor:pointer; }
+  .hamburger{ display:none; background:none; border:none; color:var(--text); font-size:20px; cursor:pointer; }
+  .mobile-menu{ display:none; flex-direction:column; background:var(--surface); padding:6px 24px 14px 24px; border-bottom:1px solid var(--border); }
+  .mobile-menu a{ color:var(--text); font-size:14px; padding:10px 0; border-bottom:1px solid var(--border); text-decoration:none; }
+  @media (max-width:840px){ .nav-links{ display:none; } .hamburger{ display:block; } .mobile-menu.open{ display:flex; } }
+
+  /* ---------- Hero ---------- */
+  .hero{ background:linear-gradient(150deg,var(--green-dark) 0%, var(--green) 55%, var(--teal) 130%); position:relative; overflow:hidden; }
+  .hero-grid{ display:grid; grid-template-columns:1.15fr .85fr; gap:40px; align-items:center; padding:56px 0 40px 0; }
+  @media (max-width:900px){ .hero-grid{ grid-template-columns:1fr; } }
+  .hero-tag{ display:inline-flex; align-items:center; gap:7px; background:rgba(255,255,255,.14); border:1px solid rgba(255,255,255,.3); color:#fff; padding:6px 14px; border-radius:20px; font-size:12px; font-weight:700; }
+  .hero h1{ color:#fff; font-size:38px; line-height:1.18; margin:16px 0 14px 0; }
+  @media (max-width:600px){ .hero h1{ font-size:28px; } }
+  .hero p.lead{ color:#EAF3EC; font-size:15.5px; line-height:1.7; max-width:520px; margin:0 0 26px 0; }
+  .hero-actions{ display:flex; gap:12px; flex-wrap:wrap; }
+  .btn{ padding:13px 20px; border-radius:10px; font-weight:700; font-size:14px; border:none; cursor:pointer; }
+  .btn-primary{ background:var(--gold); color:#3A2500; }
+  .btn-ghost{ background:rgba(255,255,255,.1); color:#fff; border:1px solid rgba(255,255,255,.35); }
+  .hero-note{ margin-top:16px; font-size:12.5px; color:#D8ECDD; }
+
+  .hub-card{ background:rgba(255,255,255,.1); border:1px solid rgba(255,255,255,.25); border-radius:18px; padding:22px; backdrop-filter:blur(4px); }
+  .hub-card .hc-title{ color:#fff; font-weight:700; font-size:14.5px; margin-bottom:14px; }
+  .hub-row{ display:flex; align-items:center; gap:10px; color:#fff; font-size:13px; padding:8px 0; border-bottom:1px dashed rgba(255,255,255,.2); }
+  .hub-row:last-child{ border-bottom:none; }
+  .hub-row .hicon{ width:30px;height:30px;border-radius:8px; background:rgba(255,255,255,.18); display:flex; align-items:center; justify-content:center; font-size:14px; flex-shrink:0; }
+
+  /* ---------- Strip ---------- */
+  .strip{ background:var(--surface-2); border-top:1px solid var(--border); border-bottom:1px solid var(--border); }
+  .strip-row{ display:flex; justify-content:space-between; padding:22px 0; gap:16px; flex-wrap:wrap; }
+  .strip-item{ display:flex; align-items:center; gap:10px; flex:1; min-width:210px; }
+  .strip-item .si{ font-size:20px; }
+  .strip-item .st{ font-size:13px; font-weight:700; }
+  .strip-item .ss{ font-size:11.5px; color:var(--muted); }
+
+  /* ---------- Cards ---------- */
+  .grid{ display:grid; gap:16px; }
+  .cols-2{ grid-template-columns:repeat(2,1fr); }
+  .cols-3{ grid-template-columns:repeat(3,1fr); }
+  .cols-4{ grid-template-columns:repeat(4,1fr); }
+  @media (max-width:900px){ .cols-3,.cols-4{ grid-template-columns:repeat(2,1fr); } }
+  @media (max-width:600px){ .cols-2,.cols-3,.cols-4{ grid-template-columns:1fr; } }
+  .card{ background:var(--surface); border:1px solid var(--border); border-radius:16px; padding:22px; box-shadow:var(--shadow); }
+  .icon-tile{ width:44px;height:44px;border-radius:11px; display:flex; align-items:center; justify-content:center; font-size:20px; margin-bottom:13px; background:var(--surface-2); }
+  .card h3{ font-size:15.5px; margin:0 0 6px 0; }
+  .card p{ font-size:13.5px; color:var(--muted); line-height:1.6; margin:0; }
+  .tint{ background:var(--surface-2); }
+
+  /* ---------- Eligibility list ---------- */
+  .elig-list{ list-style:none; padding:0; margin:0; }
+  .elig-list li{ display:flex; gap:12px; padding:12px 0; border-bottom:1px solid var(--border); font-size:14.5px; }
+  .elig-list li:last-child{ border-bottom:none; }
+  .elig-check{ width:22px;height:22px;border-radius:50%; background:#E4F3EA; color:var(--green); display:flex; align-items:center; justify-content:center; font-size:12px; flex-shrink:0; margin-top:1px; font-weight:800; }
+  :root[data-theme="dark"] .elig-check{ background:#1F3B2A; }
+  @media (prefers-color-scheme:dark){ :root:not([data-theme="light"]) .elig-check{ background:#1F3B2A; } }
+
+  /* ---------- Steps ---------- */
+  .steps{ display:flex; gap:14px; flex-wrap:wrap; }
+  .step{ flex:1; min-width:200px; background:var(--surface); border:1px solid var(--border); border-radius:16px; padding:20px; box-shadow:var(--shadow); }
+  .step-num{ width:30px;height:30px;border-radius:50%; background:var(--green); color:#fff; display:flex; align-items:center; justify-content:center; font-weight:800; font-size:13px; margin-bottom:12px; }
+
+  /* ---------- Persona ---------- */
+  .persona-card{ display:flex; gap:18px; align-items:flex-start; background:var(--surface); border:1px solid var(--border); border-radius:18px; padding:24px; box-shadow:var(--shadow); }
+  .persona-avatar{ width:52px;height:52px;border-radius:50%; background:var(--gold); color:#3A2500; font-weight:800; display:flex; align-items:center; justify-content:center; font-size:18px; flex-shrink:0; }
+  @media (max-width:600px){ .persona-card{ flex-direction:column; } }
+
+  /* ---------- LGA chips ---------- */
+  .lga-wrap{ display:flex; flex-wrap:wrap; gap:8px; }
+  .lga-chip{ background:var(--surface); border:1px solid var(--border); border-radius:20px; padding:8px 14px; font-size:12.5px; font-weight:600; display:flex; align-items:center; gap:6px; }
+  .lga-chip .lstatus{ width:7px;height:7px;border-radius:50%; background:var(--gold); }
+
+  /* ---------- Register form ---------- */
+  .form-card{ background:var(--surface); border:1px solid var(--border); border-radius:18px; padding:26px; box-shadow:var(--shadow); max-width:520px; }
+  .form-row{ margin-bottom:14px; }
+  .form-row label{ display:block; font-size:12.5px; font-weight:700; margin-bottom:6px; }
+  .form-row input, .form-row select{
+    width:100%; padding:11px 13px; border-radius:10px; border:1.5px solid var(--border); background:var(--surface-2);
+    color:var(--text); font-size:14px; font-family:inherit;
+  }
+  .form-row input:focus, .form-row select:focus{ outline:2px solid var(--green); outline-offset:1px; }
+  .form-submit{ width:100%; background:var(--green); color:#fff; font-weight:700; font-size:14px; padding:13px; border:none; border-radius:10px; cursor:pointer; }
+  .form-confirm{ display:none; text-align:center; padding:20px 10px; }
+  .form-confirm.show{ display:block; }
+  .form-confirm .fc-icon{ font-size:34px; margin-bottom:10px; }
+
+  /* ---------- Footer ---------- */
+  footer{ background:var(--green-dark); color:#DDEDE1; padding:44px 0 26px 0; }
+  .footer-top{ display:flex; justify-content:space-between; flex-wrap:wrap; gap:24px; border-bottom:1px solid rgba(255,255,255,.14); padding-bottom:26px; margin-bottom:18px; }
+  footer .fcol h4{ color:#fff; font-size:12px; letter-spacing:.04em; text-transform:uppercase; margin:0 0 10px 0; }
+  footer .fcol div{ font-size:13px; margin-bottom:7px; color:#C9E2D0; }
+  footer a{ text-decoration:none; }
+  .foot-bottom{ font-size:12px; color:#9FC5AA; display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px; }
+</style>
+</head>
+<body>
+
+<header class="site-nav">
+  <div class="nav-inner">
+    <div class="nav-brand"><div class="nav-mark">🌊</div> RiverSkills</div>
+    <nav class="nav-links">
+      <a href="#about">About</a>
+      <a href="#eligibility">Who Can Join</a>
+      <a href="#skills">Skills Tracks</a>
+      <a href="#how">How It Works</a>
+      <a href="#hubs">Learning Hubs</a>
+    </nav>
+    <div class="nav-actions">
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">◐</button>
+      <button class="nav-cta" onclick="location.hash='#register'">Register Interest</button>
+      <button class="hamburger" id="hamburger" aria-label="Menu">☰</button>
+    </div>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#about">About</a>
+    <a href="#eligibility">Who Can Join</a>
+    <a href="#skills">Skills Tracks</a>
+    <a href="#how">How It Works</a>
+    <a href="#hubs">Learning Hubs</a>
+    <a href="#register">Register Interest</a>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero on-brand" style="padding-bottom:0;">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div>
+        <span class="hero-tag">🤝 A COMMUNITY EMPOWERMENT PROPOSAL</span>
+        <h1>Free, AI-Guided Skills Training for Rivers State's Indigent Families</h1>
+        <p class="lead">RiverSkills brings intelligent tutoring and adaptive practice to shared community devices — so cost, low literacy, or a slow connection never stand between a Rivers State resident and a real, marketable skill.</p>
+        <div class="hero-actions">
+          <button class="btn btn-primary" onclick="location.hash='#register'">Register Interest</button>
+          <button class="btn btn-ghost" onclick="location.hash='#eligibility'">Am I Eligible?</button>
+        </div>
+        <p class="hero-note">Proposed to launch through community learning hubs across Rivers State's 23 Local Government Areas.</p>
+      </div>
+      <div class="hub-card">
+        <div class="hc-title">What you get, at no cost</div>
+        <div class="hub-row"><div class="hicon">🎓</div> A skills track that fits your pace</div>
+        <div class="hub-row"><div class="hicon">🗣️</div> Support in English &amp; Pidgin</div>
+        <div class="hub-row"><div class="hicon">📱</div> Works on shared hub tablets — no device needed</div>
+        <div class="hub-row"><div class="hicon">📜</div> A certificate of completion</div>
+      </div>
+    </div>
+  </div>
+  <div class="strip">
+    <div class="wrap">
+      <div class="strip-row">
+        <div class="strip-item"><span class="si">🆓</span><div><div class="st">100% Free</div><div class="ss">for verified indigent households</div></div></div>
+        <div class="strip-item"><span class="si">🏘️</span><div><div class="st">23 LGAs Planned</div><div class="ss">hubs proposed statewide</div></div></div>
+        <div class="strip-item"><span class="si">🧑\u200d🤝\u200d🧑</span><div><div class="st">No Device Required</div><div class="ss">shared tablets at every hub</div></div></div>
+        <div class="strip-item"><span class="si">🗣️</span><div><div class="st">English &amp; Pidgin</div><div class="ss">voice-guided support</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="wrap">
+    <div class="grid cols-2" style="align-items:center; gap:46px;">
+      <div>
+        <p class="eyebrow">Why This Matters</p>
+        <h2 class="h2">Opportunity shouldn't depend on income</h2>
+        <p style="color:var(--muted); font-size:14.5px; line-height:1.75;">
+          Across Rivers State, many willing learners are held back not by ability but by circumstance — the cost of a training centre, a smartphone they don't own, or lessons that assume a reading level they haven't reached yet.<br><br>
+          RiverSkills proposes to meet people where they are: <strong style="color:var(--text);">free access at community hubs</strong>, an <strong style="color:var(--text);">AI tutor that speaks plainly and patiently</strong>, and practice that adjusts to each learner instead of the other way around.
+        </p>
+      </div>
+      <div class="grid cols-2">
+        <div class="card"><div class="icon-tile">💰</div><h3>No Tuition Fee</h3><p>Verified indigent residents pay nothing to enrol or attend.</p></div>
+        <div class="card"><div class="icon-tile">🗣️</div><h3>Voice-First AI</h3><p>Spoken guidance for learners who read less comfortably.</p></div>
+        <div class="card"><div class="icon-tile">📶</div><h3>Low-Bandwidth</h3><p>Built to work on shared hub devices, not home internet.</p></div>
+        <div class="card"><div class="icon-tile">🌾</div><h3>Locally Relevant</h3><p>Tracks chosen to match real demand across Rivers LGAs.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ELIGIBILITY -->
+<section id="eligibility" class="tint">
+  <div class="wrap">
+    <div class="grid cols-2" style="gap:40px;">
+      <div>
+        <p class="eyebrow">Who Can Join</p>
+        <h2 class="h2">Eligibility &amp; how verification works</h2>
+        <p class="sub" style="margin-bottom:24px;">Priority is given to indigent and low-income households, verified through a simple, respectful process — not a bureaucratic one.</p>
+        <ul class="elig-list">
+          <li><span class="elig-check">✓</span> Resident of Rivers State, any of the 23 LGAs</li>
+          <li><span class="elig-check">✓</span> From a household facing financial hardship</li>
+          <li><span class="elig-check">✓</span> Age 15 and above — no upper age limit</li>
+          <li><span class="elig-check">✓</span> Out-of-school youth, unemployed adults, and caregivers welcome</li>
+          <li><span class="elig-check">✓</span> Priority slots for women, persons with disabilities, and displaced households</li>
+        </ul>
+      </div>
+      <div class="card" style="align-self:flex-start;">
+        <p class="eyebrow" style="margin-bottom:10px;">Verification, simplified</p>
+        <p style="font-size:13.5px; color:var(--muted); line-height:1.7; margin-bottom:14px;">A short attestation from your Ward or Local Government Area confirms eligibility — no lengthy paperwork, no fees. Hub coordinators are trained to assist anyone unsure of the process.</p>
+        <p style="font-size:13.5px; color:var(--muted); line-height:1.7; margin:0;">If a hub reaches capacity, applicants are placed on a waiting list and contacted as soon as a seat opens.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="wrap">
+    <p class="eyebrow">Skills Tracks</p>
+    <h2 class="h2">Practical skills, chosen for real local demand</h2>
+    <p class="sub">Each track pairs hands-on training with AI-guided practice, so learners get feedback even when an instructor isn't in the room.</p>
+    <div class="grid cols-3" id="skillsGrid"></div>
+  </div>
+</section>
+
+<!-- HOW AI HELPS -->
+<section id="how" class="on-brand" style="background:linear-gradient(150deg,var(--green-dark),var(--teal));">
+  <div class="wrap">
+    <p class="eyebrow">How AI Helps at the Hub</p>
+    <h2 class="h2">Designed for shared devices, not personal ones</h2>
+    <p class="sub">The same adaptive-learning idea, rebuilt around the reality of a community hub.</p>
+    <div class="grid cols-4" id="aiGrid"></div>
+  </div>
+</section>
+
+<!-- REGISTRATION STEPS -->
+<section>
+  <div class="wrap">
+    <p class="eyebrow">How To Join</p>
+    <h2 class="h2">Four steps to your first lesson</h2>
+    <div class="steps" id="stepsRow"></div>
+  </div>
+</section>
+
+<!-- PERSONA / WHAT SUCCESS LOOKS LIKE -->
+<section class="tint">
+  <div class="wrap">
+    <p class="eyebrow">What Success Could Look Like</p>
+    <h2 class="h2">An illustrative example, not a real testimony</h2>
+    <div class="persona-card">
+      <div class="persona-avatar">A</div>
+      <div>
+        <h3 style="margin:0 0 6px 0;">Imagine Ada, a caregiver in Ahoada</h3>
+        <p style="font-size:13.5px; color:var(--muted); line-height:1.7; margin:0;">Ada never finished secondary school and can't afford a fashion-design course in town. At her ward's learning hub, she works through a tailoring track on a shared tablet — the AI tutor explains each step aloud in plain English, and slows down or repeats a lesson whenever she needs it. In a few months, she has a certificate and enough skill to take in her first paying clients.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HUBS -->
+<section id="hubs">
+  <div class="wrap">
+    <p class="eyebrow">Learning Hubs</p>
+    <h2 class="h2">Proposed rollout across all 23 LGAs</h2>
+    <p class="sub">Hubs would be phased in, prioritising areas with the highest concentration of out-of-work youth and indigent households.</p>
+    <div class="lga-wrap" id="lgaWrap"></div>
+  </div>
+</section>
+
+<!-- REGISTER -->
+<section id="register" class="tint">
+  <div class="wrap">
+    <div class="grid cols-2" style="gap:40px; align-items:flex-start;">
+      <div>
+        <p class="eyebrow">Register Interest</p>
+        <h2 class="h2">Tell us where you'd like a hub</h2>
+        <p class="sub">This is a demo form for the proposal — no data leaves this page. In a real rollout, this would connect a coordinator to you directly.</p>
+      </div>
+      <div class="form-card">
+        <form id="regForm">
+          <div class="form-row"><label>Full Name</label><input type="text" required placeholder="e.g. Ngozi Amadi"></div>
+          <div class="form-row"><label>Local Government Area</label>
+            <select required>
+              <option value="">Select your LGA</option>
+              <option>Port Harcourt</option><option>Obio/Akpor</option><option>Ikwerre</option><option>Ahoada East</option>
+              <option>Ahoada West</option><option>Etche</option><option>Emohua</option><option>Other</option>
+            </select>
+          </div>
+          <div class="form-row"><label>Phone Number</label><input type="tel" required placeholder="080..."></div>
+          <div class="form-row"><label>Preferred Skill Track</label>
+            <select>
+              <option>Not sure yet</option><option>Tailoring &amp; Fashion Design</option><option>Catering &amp; Food Processing</option>
+              <option>Phone &amp; Electronics Repair</option><option>Digital Skills</option><option>Agriculture &amp; Agro-Processing</option>
+              <option>Solar Installation &amp; Maintenance</option>
+            </select>
+          </div>
+          <button type="submit" class="form-submit">Submit Interest</button>
+        </form>
+        <div class="form-confirm" id="formConfirm">
+          <div class="fc-icon">✅</div>
+          <h3 style="margin:0 0 6px 0;">Thank you!</h3>
+          <p style="font-size:13.5px; color:var(--muted); margin:0;">In a real rollout, a hub coordinator would follow up within a few days. This demo doesn't store or send your information anywhere.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-top">
+      <div>
+        <div class="nav-brand" style="color:#fff;"><div class="nav-mark">🌊</div> RiverSkills</div>
+        <div style="font-size:13px; color:#C9E2D0; max-width:280px; margin-top:8px;">A proposed AI-guided skills initiative for Rivers State's indigent and low-income residents.</div>
+      </div>
+      <div class="fcol">
+        <h4>Explore</h4>
+        <div><a href="#about">About</a></div>
+        <div><a href="#eligibility">Who Can Join</a></div>
+        <div><a href="#skills">Skills Tracks</a></div>
+      </div>
+      <div class="fcol">
+        <h4>Program</h4>
+        <div><a href="#how">How It Works</a></div>
+        <div><a href="#hubs">Learning Hubs</a></div>
+        <div><a href="#register">Register Interest</a></div>
+      </div>
+      <div class="fcol">
+        <h4>Proposal Team</h4>
+        <div>Henry</div><div>Ketura</div><div>Kester</div>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>RiverSkills — a community empowerment proposal, not an official government platform.</span>
+      <span>For real assistance, contact your Local Government Area Skills Desk.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const themeBtn = document.getElementById('themeToggle');
+  try{ const saved = localStorage.getItem('riverskills-theme'); if(saved) document.documentElement.setAttribute('data-theme', saved); }catch(e){}
+  themeBtn.addEventListener('click', () => {
+    const cur = document.documentElement.getAttribute('data-theme');
+    const next = cur === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', next);
+    try{ localStorage.setItem('riverskills-theme', next); }catch(e){}
+  });
+
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  hamburger.addEventListener('click', () => mobileMenu.classList.toggle('open'));
+  mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mobileMenu.classList.remove('open')));
+
+  const skills = [
+    ['✂️','Tailoring &amp; Fashion Design','Pattern-cutting, sewing, and finishing — with AI step-by-step video guidance.'],
+    ['🍲','Catering &amp; Food Processing','Food safety, preservation, and small-batch production for local markets.'],
+    ['🔧','Phone &amp; Electronics Repair','Diagnose and fix common phone, radio, and appliance faults.'],
+    ['💻','Digital Skills','Basic computer use, data entry, and graphic design fundamentals.'],
+    ['🌾','Agriculture &amp; Agro-Processing','Modern smallholder techniques and processing for higher-value produce.'],
+    ['☀️','Solar Installation &amp; Maintenance','Install and maintain small solar systems — high local demand.'],
+  ];
+  const skillsGrid = document.getElementById('skillsGrid');
+  skills.forEach(s => {
+    const d = document.createElement('div'); d.className = 'card';
+    d.innerHTML = `<div class="icon-tile">${s[0]}</div><h3>${s[1]}</h3><p>${s[2]}</p>`;
+    skillsGrid.appendChild(d);
+  });
+
+  const aiFeatures = [
+    ['🗣️','Voice-Guided Lessons','Spoken instructions in English and Pidgin for learners who read less comfortably.'],
+    ['📴','Works Offline-First','Core lessons run without a live connection; hubs sync progress when online.'],
+    ['🎯','Adapts to Each Learner','Difficulty adjusts automatically, even on a device shared by many people.'],
+    ['📊','Mentor Dashboards','Hub coordinators see who needs extra support at a glance.'],
+  ];
+  const aiGrid = document.getElementById('aiGrid');
+  aiFeatures.forEach(f => {
+    const d = document.createElement('div'); d.className = 'card';
+    d.style.background = 'rgba(255,255,255,.08)'; d.style.borderColor = 'rgba(255,255,255,.22)';
+    d.innerHTML = `<div class="icon-tile" style="background:rgba(255,255,255,.14);">${f[0]}</div><h3 style="color:#fff;">${f[1]}</h3><p style="color:#EFE6D2;">${f[2]}</p>`;
+    aiGrid.appendChild(d);
+  });
+
+  const steps = [
+    ['1','Find Your Nearest Hub','Visit the community learning hub closest to your ward.'],
+    ['2','Bring ID or an LGA Letter','A national ID, voter\u2019s card, or simple LGA attestation works.'],
+    ['3','Quick Interest Chat','A 10-minute conversation to match you to the right track.'],
+    ['4','Start Learning, Free','Begin your AI-guided training the same week.'],
+  ];
+  const stepsRow = document.getElementById('stepsRow');
+  steps.forEach(s => {
+    const d = document.createElement('div'); d.className = 'step';
+    d.innerHTML = `<div class="step-num">${s[0]}</div><h3 style="font-size:14.5px; margin:0 0 6px 0;">${s[1]}</h3><p style="font-size:13px; color:var(--muted); margin:0;">${s[2]}</p>`;
+    stepsRow.appendChild(d);
+  });
+
+  const lgas = ["Port Harcourt","Obio/Akpor","Ikwerre","Etche","Emohua","Ahoada East","Ahoada West","Ogba/Egbema/Ndoni",
+    "Abua/Odual","Degema","Bonny","Andoni","Opobo/Nkoro","Eleme","Oyigbo","Okrika","Ogu/Bolo","Asari-Toru",
+    "Akuku-Toru","Khana","Gokana","Tai","Omuma"];
+  const lgaWrap = document.getElementById('lgaWrap');
+  lgas.forEach(l => {
+    const c = document.createElement('div'); c.className = 'lga-chip';
+    c.innerHTML = `<span class="lstatus"></span> ${l}`;
+    lgaWrap.appendChild(c);
+  });
+
+  document.getElementById('regForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    this.style.display = 'none';
+    document.getElementById('formConfirm').classList.add('show');
+  });
+</script>
+</body>
+</html>
